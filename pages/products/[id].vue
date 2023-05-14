@@ -16,6 +16,14 @@ const { data: product } = await useFetch<IProductDetail>(
   { key: id as string }
 );
 
+if (!product.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Product not found",
+    fatal: true,
+  });
+}
+
 definePageMeta({
   layout: "products",
 });
