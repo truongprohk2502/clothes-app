@@ -3,18 +3,26 @@ const {
   params: { id },
 } = useRoute();
 
+interface IProductDetail {
+  id: string;
+  title: string;
+  price: number;
+}
+
+const { data: product } = await useFetch<IProductDetail>(
+  "https://fakestoreapi.com/products/" + id,
+  { key: id as string }
+);
+
 definePageMeta({
   layout: "products",
 });
 </script>
 
 <template>
-  <div>
-    <p>Product details for {{ id }}</p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste
-      necessitatibus accusamus architecto dignissimos non harum tenetur rem
-      itaque, dolor aut?
-    </p>
+  <div v-if="product">
+    <p>{{ product.title }}</p>
+    <p>{{ product.price }}</p>
+    <p>{{ product.id }}</p>
   </div>
 </template>
