@@ -2,6 +2,10 @@
 const {
   params: { id },
 } = useRoute();
+
+definePageMeta({
+  layout: "products",
+});
 </script>
 
 <template>
