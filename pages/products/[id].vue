@@ -6,6 +6,8 @@ const {
 interface IProductDetail {
   id: string;
   title: string;
+  image: string;
+  description: string;
   price: number;
 }
 
@@ -20,9 +22,11 @@ definePageMeta({
 </script>
 
 <template>
-  <div v-if="product">
-    <p>{{ product.title }}</p>
-    <p>{{ product.price }}</p>
-    <p>{{ product.id }}</p>
-  </div>
+  <ProductDetails
+    v-if="product"
+    :title="product.title"
+    :image="product.image"
+    :description="product.description"
+    :price="product.price"
+  />
 </template>

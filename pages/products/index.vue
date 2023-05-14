@@ -2,6 +2,9 @@
 interface IProduct {
   id: string;
   title: string;
+  image: string;
+  description: string;
+  price: number;
 }
 
 const { data: products } = await useFetch<IProduct[]>(
@@ -16,9 +19,13 @@ definePageMeta({
 <template>
   <div>
     <div class="grid grid-cols-4 gap-5">
-      <div v-for="item in products">
-        <NuxtLink :to="`/products/${item.id}`">{{ item.title }}</NuxtLink>
-      </div>
+      <ProductCard
+        v-for="item in products"
+        :key="item.id"
+        :id="item.id"
+        :title="item.title"
+        :image="item.image"
+      />
     </div>
   </div>
 </template>
